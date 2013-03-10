@@ -8,4 +8,6 @@
 
     <add key="XingConsumerKey" value=""/>
     <add key="XingConsumerSecret" value=""/>
+    <add key="LinkedinConsumerKey" value=""/>
+    <add key="LinkedinConsumerSecret" value=""/>
   </appSettings>

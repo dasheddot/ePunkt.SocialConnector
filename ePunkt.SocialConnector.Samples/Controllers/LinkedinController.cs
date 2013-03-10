@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using ePunkt.SocialConnector.Xing;
-using ePunkt.SocialConnector.Xing.Entities;
+﻿using ePunkt.SocialConnector.Linkedin;
 using ePunkt.Utilities;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ePunkt.SocialConnector.Samples.Controllers
 {
-    public class XingController : Controller
+    public class LinkedinController : Controller
     {
         public ActionResult Authorize()
         {
@@ -29,46 +27,32 @@ namespace ePunkt.SocialConnector.Samples.Controllers
 
             using (var client = Consumer.GetClient(AccessToken))
             {
-                return View(await client.Users.ForMe());
-            }
-        }
-
-        public async Task<ActionResult> FindById(string id)
-        {
-            if (AccessToken.IsNoE())
-                return RedirectToAction("Authorize");
-
-            if (id.IsNoE())
-                return View();
-
-            using (var client = Consumer.GetClient(AccessToken))
-            {
-                return View(await client.Users.ForIds(id));
+                return View(await client.People.ForMe());
             }
         }
 
         private ITokenManager TokenManager
         {
-            get { return new SimpleTokenManager(Server.MapPath("~/App_Data/xing_tokens.json"), Settings.Get("XingConsumerKey", ""), Settings.Get("XingConsumerSecret", "")); }
+            get { return new SimpleTokenManager(Server.MapPath("~/App_Data/linkedin_tokens.json"), Settings.Get("LinkedinConsumerKey", ""), Settings.Get("LinkedinConsumerSecret", "")); }
         }
 
-        private XingConsumer Consumer
+        private LinkedinConsumer Consumer
         {
-            get { return new XingConsumer(TokenManager); }
+            get { return new LinkedinConsumer(TokenManager); }
         }
 
         private string AccessToken
         {
             get
             {
-                var cookie = Request.Cookies["xingAccessToken"];
+                var cookie = Request.Cookies["linkedinAccessToken"];
                 if (cookie != null && cookie.Value.HasValue())
                     return cookie.Value;
                 return null;
             }
             set
             {
-                var cookie = new HttpCookie("xingAccessToken", value)
+                var cookie = new HttpCookie("linkedinAccessToken", value)
                     {
                         Expires = DateTime.Now.AddMinutes(5)
                     };

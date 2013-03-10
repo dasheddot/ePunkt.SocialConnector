@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\SimpleTokenManager.cs" />
+    <Compile Include="Controllers\LinkedinController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\XingController.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,6 +143,7 @@
   <ItemGroup>
     <None Include="AppSettings.config.example" />
     <Content Include="Views\Xing\FindById.cshtml" />
+    <Content Include="Views\Linkedin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

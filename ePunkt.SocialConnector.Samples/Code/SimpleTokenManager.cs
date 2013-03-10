@@ -10,15 +10,15 @@ namespace ePunkt.SocialConnector.Samples
         private static Dictionary<string, string> _tokenSecrets = new Dictionary<string, string>();
         private readonly string _pathToFile;
 
-        public SimpleTokenManager(string pathToFile)
+        public SimpleTokenManager(string pathToFile, string consumerKey, string consumerSecret)
         {
             if (pathToFile.IsNoE())
                 throw new ArgumentNullException("pathToFile");
 
             _pathToFile = pathToFile;
 
-            ConsumerKey = Settings.Get("XingConsumerKey", "");
-            ConsumerSecret = Settings.Get("XingConsumerSecret", "");
+            ConsumerKey = consumerKey;
+            ConsumerSecret = consumerSecret;
             if (ConsumerKey.IsNoE() || ConsumerSecret.IsNoE())
                 throw new ApplicationException("There is either no XING consumer key or XING consumer secret specified in the settings.");
 

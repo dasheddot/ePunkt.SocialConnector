@@ -96,6 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITokenManager.cs" />
+    <Compile Include="Linkedin\Entities\LinkedinPerson.cs" />
+    <Compile Include="Linkedin\LinkedinConsumer.cs" />
+    <Compile Include="Linkedin\LinkedinClient.cs" />
+    <Compile Include="Linkedin\LinkedinClientPeoplePart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xing\Entities\XingAddress.cs" />
     <Compile Include="Xing\Entities\XingCompany.cs" />
