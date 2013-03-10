@@ -1,0 +1,1 @@
+.nuget\NuGet.exe pack ePunkt.SocialConnector\ePunkt.SocialConnector.csproj -Build -Properties Configuration=Release

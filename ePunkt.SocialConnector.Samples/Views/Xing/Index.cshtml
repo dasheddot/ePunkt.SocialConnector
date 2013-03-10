@@ -1,0 +1,22 @@
+﻿@model ePunkt.SocialConnector.Xing.Entities.XingUser
+
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <p>Hello there, @Model.FirstName @Model.LastName.</p>
+        @if (Model.Experience.PrimaryCompany != null)
+        {
+            <p>According to XING, you are currently working at @Model.Experience.PrimaryCompany.Name.</p>
+        }
+        else
+        {
+            <p>According to XING, you are not working at all.</p>
+        }
+        <p>@Html.ActionLink("Find users by ID", "FindById")</p>
+    </div>
+</body>
+</html>
