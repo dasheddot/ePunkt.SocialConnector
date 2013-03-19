@@ -95,6 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProfile.cs" />
     <Compile Include="ITokenManager.cs" />
     <Compile Include="Linkedin\Entities\LinkedinPerson.cs" />
     <Compile Include="Linkedin\LinkedinConsumer.cs" />

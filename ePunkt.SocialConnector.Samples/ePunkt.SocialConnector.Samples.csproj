@@ -138,12 +138,10 @@
     <Content Include="Views\Xing\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppSettings.config" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="AppSettings.config.example" />
     <Content Include="Views\Xing\FindById.cshtml" />
     <Content Include="Views\Linkedin\Index.cshtml" />
+    <None Include="AppSettings.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

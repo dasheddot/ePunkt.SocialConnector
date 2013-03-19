@@ -1,12 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System;
+using ePunkt.Utilities;
 
 namespace ePunkt.SocialConnector.Xing.Entities
 {
-    public class XingUser
+    public class XingUser : IProfile
     {
         public string Id { get; set; }
-        public string Gender { get; set; }
+
+        [JsonProperty("gender")]
+        public string GenderAsString { get; set; }
 
         [JsonProperty("first_name")]
         public string FirstName { get; set; }
@@ -28,6 +31,14 @@ namespace ePunkt.SocialConnector.Xing.Entities
         [JsonProperty("professional_experience")]
         public XingExperience Experience { get; set; }
 
-    }
+        public string Identifier
+        {
+            get { return Id; }
+        }
 
+        public Uri Url
+        {
+            get { return PermaLink; }
+        }
+    }
 }
