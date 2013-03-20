@@ -3,7 +3,7 @@ using System.Net.Http;
 
 namespace ePunkt.SocialConnector.Linkedin
 {
-    public class LinkedinClient : IDisposable
+    public class LinkedinClient : IClient, IDisposable
     {
         public readonly HttpClient _client;
 
@@ -11,7 +11,7 @@ namespace ePunkt.SocialConnector.Linkedin
         {
             _client = new HttpClient(consumer.CreateAuthorizingHandler(accessToken, new HttpClientHandler()));
 
-            People = new LinkedinClientPeoplePart(_client);
+            Users = new LinkedinClientUsersPart(_client);
         }
 
         public void Dispose()
@@ -19,7 +19,13 @@ namespace ePunkt.SocialConnector.Linkedin
             _client.Dispose();
         }
 
-        public LinkedinClientPeoplePart People { get; private set; }
+        public LinkedinClientUsersPart Users { get; private set; }
 
+        #region IClient interface
+        IUsersPart IClient.Users
+        {
+            get { return Users; }
+        }
+        #endregion
     }
 }

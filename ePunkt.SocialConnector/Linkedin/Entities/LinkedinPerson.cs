@@ -24,5 +24,10 @@ namespace ePunkt.SocialConnector.Linkedin.Entities
         {
             get { return EmailAddress; }
         }
+
+        public Gender Gender
+        {
+            get { return Gender.NotSet; }
+        }
     }
 }

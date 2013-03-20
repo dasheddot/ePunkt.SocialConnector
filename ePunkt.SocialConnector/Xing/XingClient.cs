@@ -3,7 +3,7 @@ using System.Net.Http;
 
 namespace ePunkt.SocialConnector.Xing
 {
-    public class XingClient : IDisposable
+    public class XingClient : IClient, IDisposable
     {
         private readonly HttpClient _client;
 
@@ -19,5 +19,12 @@ namespace ePunkt.SocialConnector.Xing
         }
 
         public XingClientUsersPart Users { get; private set; }
+
+        #region IClient interface
+        IUsersPart IClient.Users
+        {
+            get { return Users; }
+        }
+        #endregion
     }
 }

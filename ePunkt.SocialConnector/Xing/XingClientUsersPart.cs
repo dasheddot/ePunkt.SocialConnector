@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ePunkt.SocialConnector.Xing
 {
-    public class XingClientUsersPart
+    public class XingClientUsersPart : IUsersPart
     {
         private readonly HttpClient _client;
 
@@ -32,5 +32,12 @@ namespace ePunkt.SocialConnector.Xing
             var users = await response.Content.ReadAsAsync<XingUserResponse>();
             return users.Users;
         }
+
+        #region IUsersPart interface
+        async Task<IProfile> IUsersPart.ForMe()
+        {
+            return await ForMe();
+        }
+        #endregion
     }
 }

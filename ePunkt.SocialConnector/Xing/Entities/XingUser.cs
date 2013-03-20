@@ -40,5 +40,17 @@ namespace ePunkt.SocialConnector.Xing.Entities
         {
             get { return PermaLink; }
         }
+
+        public Gender Gender
+        {
+            get
+            {
+                if (GenderAsString.Is("m"))
+                    return Gender.Male;
+                if (GenderAsString.Is("f"))
+                    return Gender.Female;
+                return Gender.NotSet;
+            }
+        }
     }
 }

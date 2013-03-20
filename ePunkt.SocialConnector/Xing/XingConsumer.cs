@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ePunkt.SocialConnector.Xing
 {
-    public class XingConsumer
+    public class XingConsumer : IConsumer
     {
         private readonly WebConsumer _consumer;
 
@@ -51,5 +51,12 @@ namespace ePunkt.SocialConnector.Xing
         {
             return _consumer.CreateAuthorizingHandler(accessToken, innerHandler);
         }
+
+        #region IClient interface
+        IClient IConsumer.GetClient(string accessToken)
+        {
+            return GetClient(accessToken);
+        }
+        #endregion
     }
 }

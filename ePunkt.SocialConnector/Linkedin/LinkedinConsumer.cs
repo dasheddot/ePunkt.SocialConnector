@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ePunkt.SocialConnector.Linkedin
 {
-    public class LinkedinConsumer
+    public class LinkedinConsumer : IConsumer
     {
         private readonly WebConsumer _consumer;
 
@@ -54,5 +54,12 @@ namespace ePunkt.SocialConnector.Linkedin
         {
             return _consumer.CreateAuthorizingHandler(accessToken, innerHandler);
         }
+
+        #region IClient interface
+        IClient IConsumer.GetClient(string accessToken)
+        {
+            return GetClient(accessToken);
+        }
+        #endregion
     }
 }

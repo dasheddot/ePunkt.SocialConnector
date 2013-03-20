@@ -27,7 +27,7 @@ namespace ePunkt.SocialConnector.Samples.Controllers
 
             using (var client = Consumer.GetClient(AccessToken))
             {
-                return View(await client.People.ForMe());
+                return View(await client.Users.ForMe());
             }
         }
 

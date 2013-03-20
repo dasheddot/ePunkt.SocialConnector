@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace ePunkt.SocialConnector.Linkedin
 {
-    public class LinkedinClientPeoplePart
+    public class LinkedinClientUsersPart : IUsersPart
     {
         private readonly HttpClient _client;
 
-        public LinkedinClientPeoplePart(HttpClient client)
+        public LinkedinClientUsersPart(HttpClient client)
         {
             _client = client;
         }
@@ -20,5 +20,12 @@ namespace ePunkt.SocialConnector.Linkedin
             var person = await response.Content.ReadAsAsync<LinkedinPerson>();
             return person;
         }
+
+        #region IUsersPart interface
+        async Task<IProfile> IUsersPart.ForMe()
+        {
+            return await ForMe();
+        }
+        #endregion
     }
 }
