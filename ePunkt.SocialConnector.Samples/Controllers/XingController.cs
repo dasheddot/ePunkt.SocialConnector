@@ -33,6 +33,18 @@ namespace ePunkt.SocialConnector.Samples.Controllers
             }
         }
 
+        public async Task<ActionResult> UnifiedProfile()
+        {
+            if (AccessToken.IsNoE())
+                return RedirectToAction("Authorize");
+
+            using (var client = Consumer.GetClient(AccessToken))
+            {
+                ViewData.Model = await client.Users.ForMe();
+                return View("UnifiedProfile");
+            }
+        }
+
         public async Task<ActionResult> FindById(string id)
         {
             if (AccessToken.IsNoE())

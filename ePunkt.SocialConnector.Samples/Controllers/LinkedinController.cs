@@ -31,6 +31,18 @@ namespace ePunkt.SocialConnector.Samples.Controllers
             }
         }
 
+        public async Task<ActionResult> UnifiedProfile()
+        {
+            if (AccessToken.IsNoE())
+                return RedirectToAction("Authorize");
+
+            using (var client = Consumer.GetClient(AccessToken))
+            {
+                ViewData.Model = await client.Users.ForMe();
+                return View("UnifiedProfile");
+            }
+        }
+
         private ITokenManager TokenManager
         {
             get { return new SimpleTokenManager(Server.MapPath("~/App_Data/linkedin_tokens.json"), Settings.Get("LinkedinConsumerKey", ""), Settings.Get("LinkedinConsumerSecret", "")); }

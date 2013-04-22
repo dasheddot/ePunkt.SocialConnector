@@ -142,6 +142,7 @@
     <Content Include="Views\Xing\FindById.cshtml" />
     <Content Include="Views\Linkedin\Index.cshtml" />
     <None Include="AppSettings.config" />
+    <Content Include="Views\Shared\UnifiedProfile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

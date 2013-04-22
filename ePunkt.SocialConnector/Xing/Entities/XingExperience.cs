@@ -10,5 +10,7 @@ namespace ePunkt.SocialConnector.Xing.Entities
 
         [JsonProperty("non_primary_companies")]
         public IEnumerable<XingCompany> NonPrimaryCompanies { get; set; }
+
+
     }
 }

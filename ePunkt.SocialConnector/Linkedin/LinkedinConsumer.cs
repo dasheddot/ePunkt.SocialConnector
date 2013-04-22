@@ -40,7 +40,7 @@ namespace ePunkt.SocialConnector.Linkedin
             }
 
             var requestParams = new Dictionary<string, string>();
-            requestParams["scope"] = "r_fullprofile r_emailaddress";
+            requestParams["scope"] = "r_fullprofile r_emailaddress r_contactinfo";
             var request = _consumer.PrepareRequestUserAuthorization(httpRequest.Url, requestParams, null);
             return _consumer.Channel.PrepareResponse(request).AsActionResult();
         }
