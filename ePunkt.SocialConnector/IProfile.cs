@@ -13,7 +13,7 @@ namespace ePunkt.SocialConnector
         Gender Gender { get; }
         Date BirthDate { get; }
         string Address { get; }
-        string PhoneNubmer { get; }
+        string PhoneNumber { get; }
         string PictureUrl { get; }
         IEnumerable<IExperience> Experiences { get; }
         IEnumerable<IEducation> Education { get; }

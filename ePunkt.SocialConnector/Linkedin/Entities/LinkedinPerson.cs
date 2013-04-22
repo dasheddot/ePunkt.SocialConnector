@@ -1,15 +1,30 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace ePunkt.SocialConnector.Linkedin.Entities
 {
     public class LinkedinPerson : IProfile
     {
+        [OnDeserialized]
+        public void OnDeserialized(StreamingContext context)
+        {
+            BirthDate = BirthDate ?? new Date();
+            PhoneNumbers = PhoneNumbers ?? new LinkedinPhoneNumbers();
+            PhoneNumbers.Values = PhoneNumbers.Values ?? new LinkedinPhoneNumber[0];
+            Courses = Courses ?? new LinkedinCourses();
+            Courses.Values = Courses.Values ?? new LinkedinCourse[0];
+            Certifications = Certifications ?? new LinkedinCertifications();
+            Certifications.Values = Certifications.Values ?? new LinkedinCertification[0];
+            Publications = Publications ?? new LinkedinPublications();
+            Publications.Values = Publications.Values ?? new LinkedinPublication[0];
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [JsonProperty("DateOfBirth")]
+        [JsonProperty("DateOfBirth", DefaultValueHandling = DefaultValueHandling.Populate)]
         public Date BirthDate { get; set; }
         public string PublicProfileUrl { get; set; }
         public string PictureUrl { get; set; }
@@ -43,7 +58,7 @@ namespace ePunkt.SocialConnector.Linkedin.Entities
 
         public string Address { get { return MainAddress; }}
 
-        public string PhoneNubmer
+        public string PhoneNumber
         {
             get
             {
@@ -53,19 +68,11 @@ namespace ePunkt.SocialConnector.Linkedin.Entities
                 var linkedinPhoneNumbers = PhoneNumbers.Values as LinkedinPhoneNumber[] ?? PhoneNumbers.Values.ToArray();
 
                 if (linkedinPhoneNumbers.Any(x => x.PhoneType == "mobile"))
-                {
-                // ReSharper disable PossibleNullReferenceException
-                    return linkedinPhoneNumbers.FirstOrDefault(x => x.PhoneType == "mobile").PhoneNumber;
-                }
+                    return linkedinPhoneNumbers.First(x => x.PhoneType == "mobile").PhoneNumber;
                 if (linkedinPhoneNumbers.Any(x => x.PhoneType == "home"))
-                {
-                    return linkedinPhoneNumbers.FirstOrDefault(x => x.PhoneType == "home").PhoneNumber;
-                }
+                    return linkedinPhoneNumbers.First(x => x.PhoneType == "home").PhoneNumber;
                 if (linkedinPhoneNumbers.Any(x => x.PhoneType == "work"))
-                {
-                    return linkedinPhoneNumbers.FirstOrDefault(x => x.PhoneType == "work").PhoneNumber;
-                }
-                // ReSharper restore PossibleNullReferenceException
+                    return linkedinPhoneNumbers.First(x => x.PhoneType == "work").PhoneNumber;
                 return "";
             }
         }

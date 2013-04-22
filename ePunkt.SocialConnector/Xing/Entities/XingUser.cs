@@ -43,8 +43,8 @@ namespace ePunkt.SocialConnector.Xing.Entities
         [JsonProperty("photo_urls")]
         public XingPhotoUrls PhotoUrls { get; set; }
 
-        public IDictionary<string,string> Languages { get; set; }
-        
+        public IDictionary<string, string> Languages { get; set; }
+
         [JsonProperty("birth_date")]
         public Date BirthDate { get; set; }
 
@@ -71,18 +71,20 @@ namespace ePunkt.SocialConnector.Xing.Entities
             get { return PrivateAddress.Street + Environment.NewLine + PrivateAddress.ZipCode + " " + PrivateAddress.City + Environment.NewLine + PrivateAddress.Country; }
         }
 
-        public string PhoneNubmer { 
-            get{
+        public string PhoneNumber
+        {
+            get
+            {
                 if (!PrivateAddress.MobilePhone.IsNoE())
                 {
                     return PrivateAddress.MobilePhone;
                 }
-                if(!PrivateAddress.Phone.IsNoE())
+                if (!PrivateAddress.Phone.IsNoE())
                 {
                     return PrivateAddress.Phone;
                 }
                 return "";
-            } 
+            }
         }
         public string PictureUrl
         {
@@ -91,12 +93,12 @@ namespace ePunkt.SocialConnector.Xing.Entities
 
         public IEnumerable<IExperience> Experiences
         {
-            get 
-            { 
+            get
+            {
                 var primary = Experience.PrimaryCompany;
                 primary.IsCurrent = true;
                 var otherExperiences = Experience.NonPrimaryCompanies.ToList();
-                otherExperiences.Insert(0,primary);
+                otherExperiences.Insert(0, primary);
                 return otherExperiences;
             }
         }
@@ -108,7 +110,7 @@ namespace ePunkt.SocialConnector.Xing.Entities
 
         public IEnumerable<string> AdditionalEducations
         {
-            get { return EducationalBackground.Qualifications ; }
+            get { return EducationalBackground.Qualifications; }
         }
 
         public IEnumerable<ICertification> Certifications
@@ -126,7 +128,7 @@ namespace ePunkt.SocialConnector.Xing.Entities
             get
             {
                 return
-                    Languages.Select(langElement => new Language {Level = langElement.Key, Name = langElement.Value})
+                    Languages.Select(langElement => new Language { Level = langElement.Key, Name = langElement.Value })
                              .Cast<ILanguage>()
                              .ToList();
             }
@@ -135,7 +137,7 @@ namespace ePunkt.SocialConnector.Xing.Entities
         IEnumerable<IPublication> IProfile.Publications
         {
             get { return null; }
-        } 
+        }
 
         public string Summary
         {
