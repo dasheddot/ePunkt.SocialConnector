@@ -20,22 +20,28 @@ namespace ePunkt.SocialConnector.Xing.Entities
 
         private Date ParseDateString(string dateString)
         {
-            var date = dateString.Trim().Split('-');
-            var newDate = new Date();
-            foreach (var elem in date)
+            if (dateString != null)
             {
-                if (elem.Length == 4)
+                var date = dateString.Trim().Split('-');
+                var newDate = new Date();
+                foreach (var elem in date)
                 {
-                    int year = int.TryParse(elem, out year) ? year : 0;
-                    newDate.Year = year;
+                    if (elem.Length == 4)
+                    {
+                        int year = int.TryParse(elem, out year) ? year : 0;
+                        newDate.Year = year;
+                    }
+                    if (elem.Length <= 2)
+                    {
+                        int day = int.TryParse(elem, out day) ? day : 0;
+                        newDate.Day = day;
+                    }
                 }
-                if (elem.Length <= 2)
-                {
-                    int day = int.TryParse(elem, out day) ? day : 0;
-                    newDate.Day = day;
-                }
+
+                return newDate;
             }
-            return newDate;
+
+            return null;
         }
     }
 }
