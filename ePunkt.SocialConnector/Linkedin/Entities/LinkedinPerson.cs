@@ -108,7 +108,7 @@ namespace ePunkt.SocialConnector.Linkedin.Entities
 
         IEnumerable<ILanguage> IProfile.Languages
         {
-            get { return Languages.Values; }
+            get { return Languages == null ? new List<ILanguage>().AsEnumerable() : Languages.Values; }
         }
 
         IEnumerable<IPublication> IProfile.Publications
