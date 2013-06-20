@@ -128,7 +128,7 @@ namespace ePunkt.SocialConnector.Xing.Entities
             get
             {
                 return
-                    Languages.Select(langElement => new Language { Level = langElement.Key, Name = langElement.Value })
+                    Languages.Select(langElement => new Language { Name = langElement.Key, Level = langElement.Value })
                              .Cast<ILanguage>()
                              .ToList();
             }
