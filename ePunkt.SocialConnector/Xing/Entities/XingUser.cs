@@ -68,7 +68,7 @@ namespace ePunkt.SocialConnector.Xing.Entities
 
         public string Address
         {
-            get { return PrivateAddress.Street + Environment.NewLine + PrivateAddress.ZipCode + " " + PrivateAddress.City + Environment.NewLine + PrivateAddress.Country; }
+            get { return string.Format("{0} {1} {2} {3}", PrivateAddress.Street, PrivateAddress.ZipCode, PrivateAddress.City, PrivateAddress.Country); }
         }
 
         public string PhoneNumber
