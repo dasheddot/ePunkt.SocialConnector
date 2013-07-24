@@ -48,10 +48,14 @@ namespace ePunkt.SocialConnector.Xing.Entities
         [JsonProperty("birth_date")]
         public Date BirthDate { get; set; }
 
-
         public Uri Url
         {
             get { return PermaLink; }
+        }
+
+        public bool HasUrl
+        {
+            get { return PermaLink != null; }
         }
 
         public Gender Gender

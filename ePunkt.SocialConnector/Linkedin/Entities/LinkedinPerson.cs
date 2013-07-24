@@ -46,6 +46,11 @@ namespace ePunkt.SocialConnector.Linkedin.Entities
             get { return new Uri(PublicProfileUrl); }
         }
 
+        public bool HasUrl
+        {
+            get { return !string.IsNullOrWhiteSpace(PublicProfileUrl); }
+        }
+
         public string Email
         {
             get { return EmailAddress; }

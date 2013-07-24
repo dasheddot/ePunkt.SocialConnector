@@ -7,6 +7,7 @@ namespace ePunkt.SocialConnector
     {
         string Id { get; }
         Uri Url { get; }
+        bool HasUrl { get; }
         string FirstName { get; }
         string LastName { get; }
         string Email { get; }
