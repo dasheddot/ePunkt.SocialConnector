@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Globalization;
+using Newtonsoft.Json;
 
 namespace ePunkt.SocialConnector.Xing.Entities
 {
@@ -19,35 +21,33 @@ namespace ePunkt.SocialConnector.Xing.Entities
         public string CareerLevel { get; set; }
         public string Name { get; set; }
 
-
         public Date EndDate { get { return ParseDateString(EndDateString); } }
 
         public Date StartDate { get { return ParseDateString(BeginDateString); } }
 
         public bool IsCurrent { get; set; }
-        
 
         private Date ParseDateString(string dateString)
         {
             if (dateString == null)
-                return null;
-
-            var date = dateString.Trim().Split('-');
-            var newDate = new Date();
-            foreach (var elem in date)
             {
-                if (elem.Length == 4)
-                {
-                    int year = int.TryParse(elem, out year) ? year : 0;
-                    newDate.Year = year;
-                }
-                if (elem.Length <= 2)
-                {
-                    int day = int.TryParse(elem, out day) ? day : 0;
-                    newDate.Day = day;
-                }
+                return null;
             }
-            return newDate;
+
+            try
+            {
+                var date = DateTime.ParseExact(dateString, new[] {"yyyy-MM", "yyyy-M", "yyyy", "yy"}, CultureInfo.InvariantCulture, DateTimeStyles.None);
+
+                return new Date
+                {
+                    Month = dateString.Contains("-") ? (int?) date.Month : null,
+                    Year = date.Year
+                };
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
